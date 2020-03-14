@@ -19,6 +19,9 @@
   "bugs": {
     "url": "https://github.com/DarkKris/task_note/issues"
   },
+  "dependencies": {
+    "minimist": ">=1.2.2"
+  },
   "homepage": "https://github.com/DarkKris/task_note#readme",
   "devDependencies": {
     "electron": "^8.1.1"
