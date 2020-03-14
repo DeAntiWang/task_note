@@ -1,0 +1,26 @@
+{
+  "name": "task_note",
+  "version": "1.0.0",
+  "description": "maxOS task note",
+  "main": "main.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DarkKris/task_note.git"
+  },
+  "keywords": [
+    "task",
+    "note"
+  ],
+  "author": "DeAnti",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DarkKris/task_note/issues"
+  },
+  "homepage": "https://github.com/DarkKris/task_note#readme",
+  "devDependencies": {
+    "electron": "^8.1.1"
+  }
+}
