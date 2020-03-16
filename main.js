@@ -22,7 +22,8 @@ const push = content => {
   if(len === 0) {
     store.set('notes', [data]);
   }else{
-    store.set('notes', notes.push(data));
+    notes.push(data);
+    store.set('notes', notes);
   }
   return len+1;
 };
@@ -36,8 +37,8 @@ const pull = () => {
 
 const createNewNote = function(content, id) {
   let res = new BrowserWindow({
-    width: 300,
-    height: 400,
+    width: 200,
+    height: 180,
     transparent: true,
     frame: false,
     webPreferences: {
@@ -56,11 +57,9 @@ const createNewNote = function(content, id) {
 // 渲染留在electron-store里面的数据为子窗口
 const renderOld = () => {
   // 只渲染未完成的
-  console.log(notes);
   let arr = notes.filter( v => !v.isComplete );
-  console.log(arr);
   for(let idx in arr) {
-    createNewNote(notes[idx].content, idx);
+    createNewNote(arr[idx].content, idx);
   }
 };
 
@@ -85,7 +84,6 @@ const createWindow = function() {
   win.loadFile('./html/index.html');
 
   // 从electron-store获取所有note
-  // update([]);
   notes = pull();
   renderOld();
 
@@ -116,15 +114,20 @@ nativeTheme.on('updated', function theThemeHasChanged () {
 ipcMain.on('exit', () => {
   win.close();
 });
-ipcMain.on('paste', data => {
+ipcMain.on('paste', (ev, data) => {
+  console.log(data.content);
   let ret_id = push(data.content);
   createNewNote(data.content, ret_id);
 });
-ipcMain.on('checkComplete', () => {
+ipcMain.on('checkComplete', (ev, data) => {
   // dialog 确认窗口
-  console.log('should dialog');
+  // TODO have problem
+  let id = data.id;
+  notes[id].isComplete = true;
+  update(notes);
+  notesWin.close();
 });
-ipcMain.on('complete', data => {
+ipcMain.on('complete', (ev, data) => {
   notes[data.id].isComplete = true;
   update(notes);
   // 关闭对应窗口

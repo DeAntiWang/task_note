@@ -101,7 +101,7 @@ textarea {
 #add-note {
     display: flex;
     flex-direction: column;
-    height: 100%;
+    @include full-size;
 
     #note-content {
         color: $dark-back-color;
@@ -119,11 +119,32 @@ textarea {
         background-color: $dark-back-color;
         border: 1px solid $bright-back-color;
         border-radius: 1rem;
-        padding: 20px;
+        padding: 18px;
         width: 100%;
-        margin-top: 25px;
-        height: calc(100% - 80% - 50px);
+        margin-top: 20px;
+        height: calc(100% - 80% - 55px);
         font-size: $sub-title-font-size;
+    }
+}
+
+#history {
+    display: flex;
+    flex-direction: column;
+    @include full-size;
+
+    .list-element {
+        border-radius: 1rem;
+        border: 1px $border-color solid;
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 13px;
+
+        .complete {
+            color: limegreen;
+        }
+        .uncomplete {
+            color: indianred;
+        }
     }
 }
 

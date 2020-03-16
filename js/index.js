@@ -1,4 +1,7 @@
 const { ipcRenderer } = require('electron');
+const Store = require('electron-store');
+
+const store = new Store();
 
 // Frame DOM
 let closeIcon = document.getElementById('close-icon'),
@@ -28,6 +31,7 @@ const changeContent = (ev) => {
       addNote.className = "";
       break;
     case 'history':
+      renderHistory();
       history.className = "";
       break;
     case 'about':
@@ -37,11 +41,28 @@ const changeContent = (ev) => {
 };
 // paste note
 const paste = () => {
-  let content = noteContent.innerHTML;
+  let content = noteContent.value;
+  noteContent.value = "";
+  // console.log(noteContent, noteContent.innerHTML, noteContent.innerText);
   ipcRenderer.send('paste', {
     content: content
+  });
+};
+// render history
+const renderHistory = () => {
+  let notes = store.get('notes', []);
+  history.innerHTML = "";
+
+  notes.forEach( val => {
+    let res = document.createElement('div');
+    res.className = "list-element";
+    res.innerHTML = `<span class="${val.isComplete?'complete':'uncomplete'}">${val.isComplete?'已完成':'未完成'}</span> ${val.content}`;
+    history.appendChild(res);
   });
 };
 
 closeIcon.addEventListener('click', quitApp);
 menuList.addEventListener('click', changeContent);
+
+// Main
+renderHistory();

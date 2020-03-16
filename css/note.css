@@ -7,7 +7,7 @@
 html, body {
   margin: 0;
   padding: 0;
-  font-size: 30px;
+  font-size: 18px;
   width: 100%;
   height: 100%;
 }
@@ -15,8 +15,27 @@ html, body {
 .note-main {
   width: 100%;
   height: 100%;
+  padding: 15px;
   /* electron 允许拖拽 */
   -webkit-app-region: drag;
+}
+
+#container {
+  width: 100%;
+  height: 78%;
+}
+
+#complete-btn {
+  margin: 7px auto 0 auto;
+  padding: 4px 8px;
+  height: calc(22% - 7px);
+  background-color: rgba(255, 255, 255, 0.6);
+  border: 1px #cccccc solid;
+  border-radius: 10px;
+}
+#complete-btn:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=note.css.map */
