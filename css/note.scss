@@ -14,3 +14,10 @@ html, body {
     font-size: 30px;
     @include full-size;
 }
+
+.note-main {
+    width: 100%;
+    height: 100%;
+    /* electron 允许拖拽 */
+    -webkit-app-region: drag;
+}

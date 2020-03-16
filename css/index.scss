@@ -23,6 +23,7 @@ $sub-title-font-size: 16px;
 * {
     box-sizing: border-box;
     user-select: none;
+    outline: none;
 }
 
 html, body {
@@ -56,7 +57,7 @@ textarea {
         font-weight: bold;
         border-bottom: 1px $border-color solid;
         /* electron 允许拖拽 */
-        -webkit-app-region: drag
+        -webkit-app-region: drag;
     }
 
     .menu-list {
@@ -94,7 +95,36 @@ textarea {
 }
 
 .hide {
-    display: none;
+    display: none !important;
+}
+
+#add-note {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    #note-content {
+        color: $dark-back-color;
+        background-color: $bright-back-color;
+        border: 1px $border-color solid;
+        border-radius: 1rem;
+        padding: 10px;
+        width: 100%;
+        height: 80%;
+        font-size: $sub-title-font-size;
+    }
+
+    button {
+        color: $bright-back-color;
+        background-color: $dark-back-color;
+        border: 1px solid $bright-back-color;
+        border-radius: 1rem;
+        padding: 20px;
+        width: 100%;
+        margin-top: 25px;
+        height: calc(100% - 80% - 50px);
+        font-size: $sub-title-font-size;
+    }
 }
 
 /**
@@ -175,6 +205,12 @@ h4 {
 
         :after {
             border-color: $bright-back-color;
+        }
+    }
+
+    #add-note {
+        #note-content {
+            color: $bright-back-color;
         }
     }
 }
