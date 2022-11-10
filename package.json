@@ -24,7 +24,7 @@
   "homepage": "https://github.com/DarkKris/task_note#readme",
   "devDependencies": {},
   "dependencies": {
-    "electron": "^15.5.5",
+    "electron": "^18.3.7",
     "electron-store": "^5.1.1"
   }
 }
